@@ -13,7 +13,7 @@ import cors from "cors";
 const app = express();
 dotenv.config();
 
-app.use(ExpressValidator())
+app.use(ExpressValidator());
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(cors({ creadentials: "same-origin" }));
@@ -23,14 +23,10 @@ app.listen(port, () => {
 });
 
 mongoose
-  .connect(
-    process.env.MONGO_URI,
-    { userFindAndModify: false },
-    {
-      useNewUrlParser: true,
-      useCreateIndex: true,
-    }
-  )
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("DB Connected"));
 
 mongoose.connection.on("error", (err) => {

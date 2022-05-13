@@ -6,7 +6,6 @@ import { userById } from "../controllers/user";
 const router = express.Router();
 
 router.get('/product/:productId', read);
-router.get('/')
 router.post("/products/:userId/create", requireSignin, isAuth, isAdmin, create);
 router.get("/products", list);
 router.param("productId", productById);
